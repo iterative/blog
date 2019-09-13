@@ -28,14 +28,14 @@ const Bio = () => {
   return (
     <div>
       <Image fixed={data.avatar.childImageSharp.fixed} alt={author} />
-      <p>
+      <div>
         Written by <strong>{author}</strong> who lives and works in San
         Francisco building useful things.
         {` `}
         <a href={`https://twitter.com/${social.twitter}`}>
           You should follow him on Twitter
         </a>
-      </p>
+      </div>
     </div>
   );
 };
