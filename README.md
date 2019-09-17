@@ -40,13 +40,4 @@ description: "Hello World"
 - `date` - **Required.** Post date. Will be used to sort posts and in RSS.
 - `description` - Short snippet to show in the feed. If description
   is not provided, first 160 simbols of the content will be used instead.
-
-To create post with images:
-
-- Create folder with desired name.
-- Place post content inside file `index.md` in this folder.
-- Place images to the same folder.
-- Link them in `.md` file using syntax `![Alt text](./path_to_img.jpg)`.
-
-Images will be automatically optimized, and image versions for different
-resolutions will be automatically generated.
+  Field should exists, but content can be blank.
