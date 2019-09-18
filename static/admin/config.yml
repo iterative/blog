@@ -2,7 +2,7 @@ backend:
   name: github
   repo: iterative/blog
   branch: master
-site_url: quirky-swirles-bba6de.netlify.com
+site_id: quirky-swirles-bba6de.netlify.com
 media_folder: static/uploads
 public_folder: /uploads
 collections:
