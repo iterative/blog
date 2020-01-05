@@ -1,11 +1,11 @@
 const fs = require('fs');
 const path = require('path');
 const _ = require('lodash');
-const {createFilePath} = require('gatsby-source-filesystem');
-const {siteMetadata} = require('./gatsby-config');
+const { createFilePath } = require('gatsby-source-filesystem');
+const { siteMetadata } = require('./gatsby-config');
 
-exports.createPages = async ({graphql, actions}) => {
-  const {createPage} = actions;
+exports.createPages = async ({ graphql, actions }) => {
+  const { createPage } = actions;
 
   const blogPost = path.resolve('./src/templates/blog-post.tsx');
   const result = await graphql(`
@@ -35,20 +35,20 @@ exports.createPages = async ({graphql, actions}) => {
   // Create blog posts pages.
   const posts = result.data.allMarkdownRemark.edges;
 
-  posts.forEach(({node : post}, index) => {
+  posts.forEach(({ node: post }, index) => {
     const previous = index === posts.length - 1 ? null : posts[index + 1].node;
     const next = index === 0 ? null : posts[index - 1].node;
 
     createPage({
-      path : post.fields.slug,
-      component : blogPost,
-      context : {slug : post.fields.slug, previous, next}
+      path: post.fields.slug,
+      component: blogPost,
+      context: { slug: post.fields.slug, previous, next }
     });
   });
 };
 
-exports.onCreateNode = ({node, actions, getNode}) => {
-  const {createNodeField} = actions;
+exports.onCreateNode = ({ node, actions, getNode }) => {
+  const { createNodeField } = actions;
 
   if (node.internal.type === 'MarkdownRemark') {
     // Get the parent node
@@ -59,19 +59,19 @@ exports.onCreateNode = ({node, actions, getNode}) => {
     // documents of type `post`.
     createNodeField({
       node,
-      name : 'collection',
-      value : _.get(parent, 'sourceInstanceName')
+      name: 'collection',
+      value: _.get(parent, 'sourceInstanceName')
     });
 
     // Get slug
-    const value = createFilePath({node, getNode}).replace(/^\/[0-9\-]*/, '/');
-    createNodeField({name : 'slug', node, value});
+    const value = createFilePath({ node, getNode }).replace(/^\/[0-9\-]*/, '/');
+    createNodeField({ name: 'slug', node, value });
   }
 };
 
 // Create json to use on https://dvc.org/community
 
-exports.onPostBuild = async function({graphql}) {
+exports.onPostBuild = async function({ graphql }) {
   const result = await graphql(`
     {
       allMarkdownRemark(
@@ -100,20 +100,23 @@ exports.onPostBuild = async function({graphql}) {
   }
 
   const posts = result.data.allMarkdownRemark.edges.map(
-      ({
-        node : {fields : {slug}, frontmatter : {title, date, commentsUrl}}
-      }) => {
-        const url = `${siteMetadata.siteUrl}/${slug}`;
+    ({
+      node: {
+        fields: { slug },
+        frontmatter: { title, date, commentsUrl }
+      }
+    }) => {
+      const url = `${siteMetadata.siteUrl}/${slug}`;
 
-        return {url, title, date, commentsUrl};
-      });
+      return { url, title, date, commentsUrl };
+    }
+  );
 
   const dir = path.join(__dirname, '/public/api');
   const filepath = path.join(dir, 'posts.json');
 
   // Write json file to the public dir,
   // it will be used community page later
-  if (!fs.existsSync(dir))
-    fs.mkdirSync(dir);
-  fs.writeFileSync(filepath, JSON.stringify({posts}));
+  if (!fs.existsSync(dir)) fs.mkdirSync(dir);
+  fs.writeFileSync(filepath, JSON.stringify({ posts }));
 };
