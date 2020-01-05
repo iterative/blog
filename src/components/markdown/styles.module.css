@@ -99,6 +99,10 @@
 
       margin: 60px 0 25px;
     }
+
+    code {
+      font-size: inherit;
+    }
   }
 
   h2 {
@@ -113,6 +117,10 @@
 
       margin: 40px 0 25px;
     }
+
+    code {
+      font-size: inherit;
+    }
   }
 
   h3 {
@@ -124,6 +132,10 @@
 
     @media (--lg-scr) {
       @mixin h3-desktop;
+    }
+
+    code {
+      font-size: inherit;
     }
   }
 
