@@ -30,6 +30,7 @@
 
   @media (--lg-scr) {
     &.big {
+      display: block;
       width: 1005px;
       height: 450px;
     }
