@@ -1,4 +1,6 @@
 .wrapper {
+  display: flex;
+  flex-direction: column;
   position: relative;
   width: 300px;
   height: 500px;
@@ -163,10 +165,7 @@
 }
 
 .meta {
-  position: absolute;
-  right: 30px;
-  bottom: 15px;
-  left: 30px;
+  margin: auto 30px 15px;
 
   @media (--md-scr) {
     .big & {
