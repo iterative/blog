@@ -88,7 +88,7 @@
 .body {
   position: relative;
   overflow: hidden;
-  padding: 10px 30px;
+  padding: 10px 20px;
 
   &.overflown::after {
     content: "";
@@ -165,18 +165,17 @@
 }
 
 .meta {
-  margin: auto 30px 15px;
+  margin-top: auto;
+  padding: 0 20px 15px;
 
   @media (--md-scr) {
     .big & {
       position: static;
-      padding: 0 30px 15px;
     }
   }
 
   @media (--sm-scr) {
     position: static;
-    padding: 0 30px 15px;
   }
 
   @media (--lg-scr) {
