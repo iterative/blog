@@ -5,6 +5,7 @@ import React, { useEffect, useRef } from 'react';
 import { useRafState, useWindowSize } from 'react-use';
 
 import { IFeedPostData } from '../../../pages/index';
+import ConditionalWrapper from '../../common/conditional-wrapper';
 
 import Meta from '../../meta';
 
@@ -52,18 +53,26 @@ function FeedItem({ big, fields, frontmatter, timeToRead }: IFeedItemPorps) {
           <Placeholder className={styles.picture} />
         )}
       </Link>
-      <div
-        className={cn(styles.body, !isOverflown && styles.overflown)}
-        ref={bodyRef}
+
+      <ConditionalWrapper
+        condition={big}
+        wrapper={(children: React.ReactNode) => (
+          <div className={styles.bodyContainer}>{children}</div>
+        )}
       >
-        <Link to={fields.slug} className={styles.title}>
-          {title}
-        </Link>
-        <div className={styles.description}>{description}</div>
-      </div>
-      <div className={styles.meta}>
-        <Meta name={name} avatar={avatar} date={date} timeToRead={timeToRead} />
-      </div>
+        <div
+          className={cn(styles.body, !isOverflown && styles.overflown)}
+          ref={bodyRef}
+        >
+          <Link to={fields.slug} className={styles.title}>
+            {title}
+          </Link>
+          <div className={styles.description}>{description}</div>
+        </div>
+        <div className={styles.meta}>
+          <Meta name={name} avatar={avatar} date={date} timeToRead={timeToRead} />
+        </div>
+      </ConditionalWrapper>
     </div>
   );
 }

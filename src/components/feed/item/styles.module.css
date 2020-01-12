@@ -37,6 +37,12 @@
   }
 }
 
+.body-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
 .pictureLink {
   @mixin active;
 
@@ -123,6 +129,7 @@
     .big & {
       max-height: 314px;
       padding: 30px;
+      padding-left: 0;
     }
   }
 }
@@ -182,6 +189,7 @@
   @media (--lg-scr) {
     .big & {
       left: 700px;
+      padding-left: 0;
     }
   }
 }
