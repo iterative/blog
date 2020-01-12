@@ -70,7 +70,12 @@ function FeedItem({ big, fields, frontmatter, timeToRead }: IFeedItemPorps) {
           <div className={styles.description}>{description}</div>
         </div>
         <div className={styles.meta}>
-          <Meta name={name} avatar={avatar} date={date} timeToRead={timeToRead} />
+          <Meta
+            name={name}
+            avatar={avatar}
+            date={date}
+            timeToRead={timeToRead}
+          />
         </div>
       </ConditionalWrapper>
     </div>

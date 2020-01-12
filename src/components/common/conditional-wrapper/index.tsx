@@ -6,8 +6,10 @@ interface IConditionalWrapperProps {
   children: ReactNode;
 }
 
-const ConditionalWrapper: any = ({ condition, wrapper, children }: IConditionalWrapperProps) => (
-  condition ? wrapper(children) : children
-)
+const ConditionalWrapper: any = ({
+  condition,
+  wrapper,
+  children
+}: IConditionalWrapperProps) => (condition ? wrapper(children) : children);
 
 export default ConditionalWrapper;
