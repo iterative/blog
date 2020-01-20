@@ -18,7 +18,7 @@ import Share from '../share';
 
 import styles from './styles.module.css';
 
-const PictureCommentAllowedMakrdownTypes: MarkdownNodeType[] = [
+const AllowedMarkdownTypes: MarkdownNodeType[] = [
   'text',
   'link',
   'paragraph',
@@ -85,7 +85,12 @@ function Post({ html, timeToRead, frontmatter, fields }: IBlogPostData) {
         <div className={styles.headContent}>
           <h1 className={styles.title}>{title}</h1>
           <div className={styles.description}>
-            {descriptionLong || description}
+            <ReactMarkdown
+              allowedTypes={AllowedMarkdownTypes}
+              className={styles.markdown}
+            >
+              {descriptionLong || description}
+            </ReactMarkdown>
           </div>
           <Meta
             commentsCount={commentsCount}
@@ -109,7 +114,8 @@ function Post({ html, timeToRead, frontmatter, fields }: IBlogPostData) {
             <div className={styles.pictureComment}>
               <ReactMarkdown
                 linkTarget="_blank"
-                allowedTypes={PictureCommentAllowedMakrdownTypes}
+                allowedTypes={AllowedMarkdownTypes}
+                className={styles.markdown}
               >
                 {pictureComment}
               </ReactMarkdown>

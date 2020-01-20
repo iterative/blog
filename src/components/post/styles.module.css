@@ -17,6 +17,16 @@
   }
 }
 
+.markdown {
+  a {
+    color: inherit;
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
 .head {
   @media (--lg-scr) {
     padding-bottom: 20px;
