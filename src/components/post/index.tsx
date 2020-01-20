@@ -1,5 +1,6 @@
 import cn from 'classnames';
 import Image from 'gatsby-image';
+import ReactMarkdown, { NodeType as MarkdownNodeType } from 'react-markdown';
 
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useWindowScroll, useWindowSize } from 'react-use';
@@ -16,6 +17,15 @@ import PseudoButton from '../pseudo-button';
 import Share from '../share';
 
 import styles from './styles.module.css';
+
+const PictureCommentAllowedMakrdownTypes: MarkdownNodeType[] = [
+  'text',
+  'link',
+  'paragraph',
+  'strong',
+  'delete',
+  'emphasis'
+];
 
 function Post({ html, timeToRead, frontmatter, fields }: IBlogPostData) {
   const {
@@ -96,7 +106,14 @@ function Post({ html, timeToRead, frontmatter, fields }: IBlogPostData) {
             />
           </div>
           {pictureComment && (
-            <div className={styles.pictureComment}>{pictureComment}</div>
+            <div className={styles.pictureComment}>
+              <ReactMarkdown
+                linkTarget="_blank"
+                allowedTypes={PictureCommentAllowedMakrdownTypes}
+              >
+                {pictureComment}
+              </ReactMarkdown>
+            </div>
           )}
         </>
       )}
