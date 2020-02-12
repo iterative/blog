@@ -4,23 +4,28 @@ import React from 'react';
 
 import cn from 'classnames';
 
-import { IFeedPostData } from '../../pages/index';
-
-import FeedItem from './item';
+import Paginator, { IPageInfo } from '../paginator';
+import FeedItem, { IFeedPostData } from './item';
 
 import styles from './styles.module.css';
 
-interface IFeedProps {
-  feedPostList: Array<{
+export interface IFeedPostList {
+  edges: Array<{
     node: IFeedPostData;
   }>;
+}
+
+interface IFeedProps {
+  feedPostList: IFeedPostList;
   bigFirst?: boolean;
   header: React.ReactNode;
   leadParagraph?: React.ReactNode;
+  pageInfo: IPageInfo;
 }
 
 function Feed({
-  feedPostList,
+  feedPostList: { edges },
+  pageInfo,
   bigFirst = true,
   header,
   leadParagraph
@@ -36,22 +41,25 @@ function Feed({
         {leadParagraph && <div className={styles.lead}>{leadParagraph}</div>}
       </div>
       <div className={styles.posts}>
-        {feedPostList.map(({ node }, index) => (
+        {edges.map(({ node }, index) => (
           <FeedItem
             feedPost={node}
             key={node.id}
-            big={bigFirst && index === 0}
+            big={bigFirst && index === 0 && pageInfo.currentPage === 1}
           />
         ))}
       </div>
+      <Paginator pageInfo={pageInfo} />
     </div>
   );
 }
 
 export const query = graphql`
-  fragment FeedPostList on MarkdownRemarkEdge {
-    node {
-      ...FeedPost
+  fragment FeedPostList on MarkdownRemarkConnection {
+    edges {
+      node {
+        ...FeedPost
+      }
     }
   }
 `;

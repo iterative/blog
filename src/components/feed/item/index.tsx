@@ -1,16 +1,46 @@
 import cn from 'classnames';
 import { graphql, Link } from 'gatsby';
-import Image from 'gatsby-image';
+import Image, { FixedObject, FluidObject } from 'gatsby-image';
 import React, { useEffect, useRef } from 'react';
 import { useRafState, useWindowSize } from 'react-use';
-
-import { IFeedPostData } from '../../../pages/index';
 
 import Meta from '../../meta';
 
 import styles from './styles.module.css';
 
 import { ReactComponent as Placeholder } from './placeholder.svg';
+
+export interface IFeedPostData {
+  id: string;
+  timeToRead: string;
+  fields: {
+    slug: string;
+  };
+  frontmatter: {
+    title: string;
+    date: string;
+    description: string;
+    descriptionLong: string;
+    picture?: {
+      childImageSharp: {
+        big: FluidObject;
+        small: FluidObject;
+      };
+    };
+    author: {
+      childMarkdownRemark: {
+        frontmatter: {
+          name: string;
+          avatar: {
+            childImageSharp: {
+              fixed: FixedObject;
+            };
+          };
+        };
+      };
+    };
+  };
+}
 
 interface IFeedItemProps {
   big?: boolean;

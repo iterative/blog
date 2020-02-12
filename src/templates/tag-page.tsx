@@ -2,52 +2,54 @@
 import { graphql } from 'gatsby';
 import React from 'react';
 
-import Feed from '../components/feed';
+import Feed, { IFeedPostList } from '../components/feed';
 import Layout from '../components/layout';
+import { IPageInfo } from '../components/paginator';
 import SEO from '../components/seo';
-import { IFeedPostData } from '../pages/index';
-
-interface IListQueryResult<ResultItem> {
-  totalCount: number;
-  edges: Array<{ node: ResultItem }>;
-}
+import { ILocation, LocationContext } from '../context/location';
 
 interface ITagPageTemplateProps {
+  data: { posts: IFeedPostList };
+  location: ILocation;
   pageContext: {
     tag: string;
-  };
-  data: {
-    posts: IListQueryResult<IFeedPostData>;
+    pageInfo: IPageInfo;
   };
 }
 
 const Tags = ({
-  pageContext: { tag },
-  data: { posts }
+  data: { posts },
+  pageContext: { tag, pageInfo },
+  location
 }: ITagPageTemplateProps) => {
   const title = `Posts tagged with "${tag}"`;
 
   return (
-    <Layout>
-      <SEO title={title} defaultMetaTitle={true} />
-      <Feed feedPostList={posts.edges} bigFirst={false} header={title} />
-    </Layout>
+    <LocationContext.Provider value={location}>
+      <Layout>
+        <SEO title={title} defaultMetaTitle={true} />
+        <Feed
+          pageInfo={pageInfo}
+          feedPostList={posts}
+          bigFirst={false}
+          header={title}
+        />
+      </Layout>
+    </LocationContext.Provider>
   );
 };
 
 export default Tags;
 
 export const pageQuery = graphql`
-  query($tag: String) {
+  query($tag: String, $skip: Int, $limit: Int) {
     posts: allMarkdownRemark(
-      limit: 2000
       sort: { fields: [frontmatter___date], order: DESC }
       filter: { frontmatter: { tags: { in: [$tag] } } }
+      skip: $skip
+      limit: $limit
     ) {
-      totalCount
-      edges {
-        ...FeedPostList
-      }
+      ...FeedPostList
     }
   }
 `;

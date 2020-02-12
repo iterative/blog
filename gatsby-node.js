@@ -1,13 +1,15 @@
 const fs = require('fs');
 const path = require('path');
-const tagToSlug = require('./src/utils/tag-to-slug');
 const { createFilePath } = require('gatsby-source-filesystem');
+const tagToSlug = require('./src/utils/tag-to-slug');
+const iterPages = require('./src/components/paginator/utils/iter-pages');
 const { siteMetadata } = require('./gatsby-config');
 
 exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions;
 
   const blogPost = path.resolve('./src/templates/blog-post.tsx');
+  const homePage = path.resolve('./src/templates/home-page.tsx');
   const tagPage = path.resolve('./src/templates/tag-page.tsx');
   const result = await graphql(
     `
@@ -15,7 +17,7 @@ exports.createPages = async ({ graphql, actions }) => {
         allMarkdownRemark(
           sort: { fields: [frontmatter___date], order: DESC }
           filter: { fileAbsolutePath: { regex: "/content/blog/" } }
-          limit: 1000
+          limit: 9999
         ) {
           edges {
             node {
@@ -28,9 +30,21 @@ exports.createPages = async ({ graphql, actions }) => {
             }
           }
         }
-        tags: allMarkdownRemark(limit: 999) {
+        home: allMarkdownRemark(
+          sort: { fields: [frontmatter___date], order: DESC }
+          filter: { fileAbsolutePath: { regex: "/content/blog/" } }
+          limit: 9999
+        ) {
+          pageInfo {
+            itemCount
+          }
+        }
+        tags: allMarkdownRemark(limit: 9999) {
           group(field: frontmatter___tags) {
             fieldValue
+            pageInfo {
+              itemCount
+            }
           }
         }
       }
@@ -51,6 +65,7 @@ exports.createPages = async ({ graphql, actions }) => {
     createPage({
       component: blogPost,
       context: {
+        currentPage: index + 1,
         next,
         previous,
         slug: post.node.fields.slug
@@ -59,16 +74,35 @@ exports.createPages = async ({ graphql, actions }) => {
     });
   });
 
+  const home = result.data.home;
+
+  for (const { paginationContext, pagePath } of iterPages({
+    basePath: '/',
+    hasHeroItem: true,
+    itemCount: home.pageInfo.itemCount
+  })) {
+    createPage({
+      component: homePage,
+      context: paginationContext,
+      path: pagePath
+    });
+  }
+
   const tags = result.data.tags.group;
 
-  tags.forEach(({ fieldValue: tag }) => {
-    const slug = tagToSlug(tag);
+  tags.forEach(({ fieldValue: tag, pageInfo: { itemCount } }) => {
+    const basePath = `/tags/${tagToSlug(tag)}`;
 
-    createPage({
-      component: tagPage,
-      context: { tag },
-      path: `/tags/${slug}`
-    });
+    for (const { paginationContext, pagePath } of iterPages({
+      basePath,
+      itemCount
+    })) {
+      createPage({
+        component: tagPage,
+        context: { tag, ...paginationContext },
+        path: pagePath
+      });
+    }
   });
 };
 
