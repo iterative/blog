@@ -1,0 +1,7 @@
+md5: 3739f3ad2f1985968fcb3f49e37477a5
+outs:
+- md5: 7d312669b991bc83a86b9a9afc5fd04b.dir
+  path: static/uploads
+  cache: true
+  metric: false
+  persist: false

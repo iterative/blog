@@ -12,6 +12,13 @@ const plugins = [
   'gatsby-plugin-twitter',
   {
     options: {
+      imagesDvcPath: 'uploads.dvc',
+      imagesPath: 'static/uploads'
+    },
+    resolve: 'dvc-image-plugin'
+  },
+  {
+    options: {
       name: 'blog',
       path: path.join(__dirname, 'content', 'blog')
     },

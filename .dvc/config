@@ -1,0 +1,4 @@
+['remote "s3"']
+url = http://fabio.images.dvc.org.s3-website.eu-west-3.amazonaws.com/
+[core]
+remote = s3
