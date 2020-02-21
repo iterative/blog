@@ -1,5 +1,6 @@
 const visit = require('unist-util-visit');
 const { selectAll } = require('hast-util-select');
+const escape = require('escape-html');
 
 const {
   convertHastToHtml,
@@ -17,16 +18,16 @@ function isCorrectExternalLinkAttr(attrsKeyTagArray) {
 function renderTag(attrs) {
   return `
     <section class="elp-content-holder">
-      <a href=${attrs.href} class="external-link-preview">
+      <a href="${escape(attrs.href)}" class="external-link-preview">
           <div class="elp-description-holder">
-            <h4 class="elp-title">${attrs.title}</h4>
-            <div class="elp-description">${attrs.description}</div>
-            <div class="elp-link">${attrs.link}</div>
+            <h4 class="elp-title">${escape(attrs.title)}</h4>
+            <div class="elp-description">${escape(attrs.description)}</div>
+            <div class="elp-link">${escape(attrs.link)}</div>
           </div>
            ${
              attrs.image
                ? `<div class="elp-image-holder">
-                <img src="${attrs.image}" alt="${attrs.title}"/>
+                <img src="${escape(attrs.image)}" alt="${escape(attrs.title)}"/>
             </div>`
                : ``
            }
