@@ -40,6 +40,7 @@ const plugins = [
   },
   {
     options: {
+      pedantic: false,
       plugins: [
         {
           resolve: 'gatsby-remark-embedder'
