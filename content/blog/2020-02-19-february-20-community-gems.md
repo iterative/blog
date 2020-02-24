@@ -49,8 +49,12 @@ For pre-processing data,
 procedure for transforming and cleaning inputs (i.e., you can use bash scripts
 to `dvc run` the pipeline whenever a user selects a dataset). Saving the
 workspace after experimentation, including model files, metrics, and outputs, is
-a core function of DVC (see `dvc add` and `dvc push` functions); a user can
-later "pull" a saved workspace and all associated files using `dvc checkout`.
+a core function of DVC (see `dvc add` and `dvc push` functions). We also have a
+[Python API](https://dvc.org/doc/use-cases/data-registries#programatic-reusability-of-dvc-data)
+so users can load artifacts like datasets and model files into their local
+Python session. When they're done experimenting, they can `dvc add` and
+`dvc push` their progress. Users can later "pull" a saved workspace and all
+associated files using `dvc checkout`
 
 As for how to organize hundreds of separate experiments, we're still evolving
 our strategy and best-practice recommendations. It's conceivable that each
@@ -102,6 +106,10 @@ unusual for teams and organizations to share a set of credentials, so a
 reasonable level of security may mean ensuring that the `config` file for your
 project (which typically contains Google Drive credentials) is only visible to
 team members.
+
+Please check out our
+[docs about Google Drive](https://dvc.org/doc/user-guide/setup-google-drive-remote),
+too, for more about how DVC uses the Google Drive API.
 
 ### Q: I just tried to upgrade DVC via `homebrew` and got a "SHA256 mismatch" error. [What's going on](https://discordapp.com/channels/485586884165107732/485596304961962003/672930535261339669)?
 
