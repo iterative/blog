@@ -30,8 +30,8 @@ By defult, `dvc checkout` is written for a
 that it will sync your local workspace with all the model files, dependencies,
 and outputs specified by a project's `.dvc` files. If you only want to access
 one artifact from the project, you can do this with
-`dvc checkout <path to file>`. This will attempt to find the object
-corresponding to the specified .dvc file and deliver it to your workspace.
+`dvc checkout <path to file>`. This will deliver the specified file to your
+workspace.
 
 If you're interested in sharing specific artifacts (like data files or model
 binaries) with other users, you might also consider `dvc get` and `dvc import`.
