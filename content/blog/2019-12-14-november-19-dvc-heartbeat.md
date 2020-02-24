@@ -58,7 +58,7 @@ involved our community is and can’t wait to share more with you:
 
 - DVC became part of the default
   [Homebrew formulae](https://formulae.brew.sh/formula/dvc)! So now you can
-  install it as easy as `𝚋𝚛𝚎𝚠 𝚒𝚗𝚜𝚝𝚊𝚕𝚕 𝚍𝚟𝚌`!
+  install it as easy as `brew install dvc`!
 
 - We helped 2 aspiring speakers deliver their very first conference talks.
   [Kurian Benoy](https://twitter.com/kurianbenoy2/status/1183427495342694401?s=20)

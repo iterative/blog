@@ -63,6 +63,9 @@ const plugins = [
         'resize-image-plugin',
         'gatsby-remark-responsive-iframe',
         {
+          options: {
+            noInlineHighlight: true
+          },
           resolve: 'gatsby-remark-prismjs'
         },
         'gatsby-remark-copy-linked-files',
