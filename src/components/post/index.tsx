@@ -49,7 +49,7 @@ function Post({ html, timeToRead, frontmatter, fields }: IBlogPostData) {
   }, [wrapperRef, width, height, y]);
 
   const [counterLoaded, setCounterLoaded] = useState(false);
-  const [commentsCount, setCommentsCount] = useState();
+  const [commentsCount, setCommentsCount] = useState(0);
 
   useEffect(() => {
     if (!commentsUrl || counterLoaded) {
