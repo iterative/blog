@@ -29,3 +29,9 @@ body {
   font-family: var(--font-brandon);
   color: var(--color-black);
 }
+
+/* Prevent mobile browsers from changing font-size */
+* {
+  -webkit-text-size-adjust: none;
+  text-size-adjust: none;
+}
