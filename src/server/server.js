@@ -19,6 +19,17 @@ const app = express();
 const serveOptions = {
   directoryListing: false,
   etag: true,
+  headers: [
+    {
+      headers: [
+        {
+          key: 'Cache-Control',
+          value: 'public, max-age=3600'
+        }
+      ],
+      source: '*'
+    }
+  ],
   public: path.join(__dirname, '../../public'),
   trailingSlash: false
 };
