@@ -22,9 +22,11 @@ const staticFilesOptions = {
   headers: [
     {
       headers: [
+        // Cache always revalidated by the client, not by the proxy
+        // (instant deploys when combined with the post-deploy purge)
         {
           key: 'Cache-Control',
-          value: 'public, max-age=900'
+          value: 'public, max-age=0, s-maxage=99999'
         }
       ],
       source: '**'

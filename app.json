@@ -12,6 +12,8 @@
     }
   },
   "name": "dvc-blog-production",
-  "scripts": {},
+  "scripts": {
+    "postdeploy": "./scripts/heroku-postdeploy.sh"
+  },
   "stack": "heroku-18"
 }
