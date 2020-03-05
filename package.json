@@ -9,6 +9,7 @@
   },
   "scripts": {
     "build": "gatsby build",
+    "heroku-postbuild": "./scripts/deploy-with-s3.js",
     "develop": "gatsby develop",
     "start": "./scripts/clear-cloudflare-cache.js; node ./src/server/server.js",
     "typecheck": "tsc --noEmit --skipLibCheck",
@@ -39,6 +40,7 @@
     ]
   },
   "dependencies": {
+    "@hapi/wreck": "^17.0.0",
     "@reach/portal": "^0.5.0",
     "@reach/tooltip": "^0.5.4",
     "@types/google.analytics": "^0.0.40",
@@ -52,6 +54,7 @@
     "gatsby-remark-embedder": "^1.8.0",
     "gatsby-remark-relative-images": "^0.2.3",
     "hast-util-select": "^3.0.1",
+    "mime-types": "^2.1.26",
     "node-fetch": "^2.6.0",
     "prismjs": "^1.17.1",
     "react": "^16.11.0",
@@ -71,6 +74,7 @@
     "@types/react-dom": "^16.9.4",
     "@types/react-helmet": "^5.0.14",
     "autoprefixer": "^9.7.1",
+    "fs-extra": "^8.1.0",
     "gatsby-plugin-feed": "^2.3.26",
     "gatsby-plugin-google-analytics": "^2.1.33",
     "gatsby-plugin-manifest": "^2.2.37",
@@ -99,6 +103,7 @@
     "postcss-nested": "^4.2.1",
     "prettier": "^1.19.1",
     "remark-html": "^10.0.0",
+    "s3-client": "^4.4.2",
     "stylelint": "^11.1.1",
     "stylelint-config-standard": "^19.0.0",
     "tslint": "^5.20.1",
@@ -110,7 +115,6 @@
   },
   "cacheDirectories": [
     "node_modules",
-    ".cache",
-    "public"
+    ".cache"
   ]
 }
