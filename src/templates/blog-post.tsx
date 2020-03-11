@@ -8,7 +8,8 @@ import Post from '../components/post';
 import SEO from '../components/seo';
 
 interface IFluidObject extends FluidObject {
-  presentationWidth?: number;
+  presentationWidth: number;
+  presentationHeight: number;
 }
 
 export interface IGatsbyImageProps extends GatsbyImageProps {
@@ -69,9 +70,10 @@ interface IBlogPostTemplateProps {
     next: IBlogPostData;
     previous: IBlogPostData;
   };
+  path: string;
 }
 
-function BlogPostTemplate({ data }: IBlogPostTemplateProps) {
+function BlogPostTemplate({ data, path }: IBlogPostTemplateProps) {
   const post = data.markdownRemark;
 
   return (
@@ -81,8 +83,9 @@ function BlogPostTemplate({ data }: IBlogPostTemplateProps) {
         description={post.frontmatter.description}
         image={
           post.frontmatter.picture &&
-          post.frontmatter.picture.childImageSharp.fluid.src
+          post.frontmatter.picture.childImageSharp.fluid
         }
+        path={path}
       />
       <Post {...post} />
     </Layout>
@@ -126,7 +129,9 @@ export const pageQuery = graphql`
           childImageSharp {
             fluid(maxWidth: 850) {
               ...GatsbyImageSharpFluid_withWebp
+              src
               presentationWidth
+              presentationHeight
             }
           }
         }

@@ -15,11 +15,13 @@ interface ITagPageTemplateProps {
     tag: string;
     pageInfo: IPageInfo;
   };
+  path: string;
 }
 
 const Tags = ({
   data: { posts },
   pageContext: { tag, pageInfo },
+  path,
   location
 }: ITagPageTemplateProps) => {
   const title = `Posts tagged with "${tag}"`;
@@ -27,7 +29,7 @@ const Tags = ({
   return (
     <LocationContext.Provider value={location}>
       <Layout>
-        <SEO title={title} defaultMetaTitle={true} />
+        <SEO title={title} defaultMetaTitle={true} path={path} />
         <Feed
           pageInfo={pageInfo}
           feedPostList={posts}

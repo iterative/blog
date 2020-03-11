@@ -3,15 +3,21 @@ import React from 'react';
 import Helmet from 'react-helmet';
 
 type MetaProps = JSX.IntrinsicElements['meta'];
+type LinkProps = JSX.IntrinsicElements['link'];
 
 interface ISEOProps {
   title: string;
   defaultMetaTitle?: boolean;
   description?: string;
   keywords?: string;
-  image?: string;
+  image?: {
+    src: string;
+    presentationWidth: number;
+    presentationHeight: number;
+  };
   lang: string;
   meta: MetaProps[];
+  path?: string;
 }
 
 function SEO({
@@ -19,9 +25,14 @@ function SEO({
   defaultMetaTitle,
   description,
   keywords,
-  image,
+  image = {
+    src: '/social-share.png',
+    presentationWidth: 1200,
+    presentationHeight: 630
+  },
   lang,
-  meta
+  meta,
+  path
 }: ISEOProps) {
   const { site } = useStaticQuery(
     graphql`
@@ -45,11 +56,11 @@ function SEO({
   const metaTitle =
     title && !defaultMetaTitle ? title : site.siteMetadata.title;
 
-  const metaImage = image || '/social-share.png';
+  const imageUrl = site.siteMetadata.siteUrl + image.src;
 
   const defaultMeta: MetaProps[] = [
     {
-      property: 'description',
+      name: 'description',
       content: metaDescription
     },
     {
@@ -70,7 +81,15 @@ function SEO({
     },
     {
       property: 'og:image',
-      content: metaImage
+      content: imageUrl
+    },
+    {
+      property: 'og:image:width',
+      content: image.presentationWidth
+    },
+    {
+      property: 'og:image:height',
+      content: image.presentationHeight
     },
     {
       name: 'twitter:card',
@@ -81,14 +100,33 @@ function SEO({
       content: metaTitle
     },
     {
+      name: 'twitter:site',
+      content: '@dvcORG'
+    },
+    {
       name: 'twitter:description',
       content: metaDescription
     },
     {
       name: 'twitter:image',
-      content: encodeURI(`${site.siteMetadata.siteUrl}${metaImage}`)
+      content: imageUrl
     }
   ];
+
+  let locationLink: LinkProps[] = [];
+  if (path) {
+    const fullUrl = site.siteMetadata.siteUrl + path;
+    locationLink = [
+      {
+        rel: 'canonical',
+        href: fullUrl
+      }
+    ];
+    defaultMeta.push({
+      property: 'og:url',
+      content: fullUrl
+    });
+  }
 
   return (
     <Helmet
@@ -99,13 +137,9 @@ function SEO({
       titleTemplate={`%s | ${site.siteMetadata.title}`}
       meta={[...defaultMeta, ...meta]}
       link={[
+        ...locationLink,
         {
-          rel: 'shortcut icon',
-          type: 'image/x-icon',
-          href: '/favicon.ico'
-        },
-        {
-          rel: 'shortcut icon',
+          rel: 'icon',
           type: 'image/vnd.microsoft.icon',
           href: '/favicon.ico'
         },

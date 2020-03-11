@@ -15,17 +15,19 @@ interface IBlogIndexProps {
   pageContext: {
     pageInfo: IPageInfo;
   };
+  path: string;
 }
 
 function BlogIndex({
   data: { posts },
+  path,
   location,
   pageContext: { pageInfo }
 }: IBlogIndexProps) {
   return (
     <LocationContext.Provider value={location}>
       <Layout>
-        <SEO title="Blog" defaultMetaTitle={true} />
+        <SEO title="Blog" defaultMetaTitle={true} path={path} />
         <Feed
           feedPostList={posts}
           pageInfo={pageInfo}
