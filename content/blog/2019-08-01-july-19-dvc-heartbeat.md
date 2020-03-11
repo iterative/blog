@@ -24,7 +24,6 @@ tags:
   - Heartbeat
   - Open Source Summit
   - Discord Gems
-  - DVC
 ---
 
 ## News and links

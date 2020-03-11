@@ -21,7 +21,6 @@ commentsUrl: https://discuss.dvc.org/t/may-19-dvc-heartbeat/290
 tags:
   - Heartbeat
   - Discord Gems
-  - DVC
   - Google Season of Docs
 ---
 

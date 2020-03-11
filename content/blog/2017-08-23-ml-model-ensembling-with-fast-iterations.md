@@ -14,7 +14,6 @@ author: ../authors/george_vyshnya.md
 commentsUrl: https://discuss.dvc.org/t/ml-model-ensembling-with-fast-iterations/296
 tags:
   - Best Practices
-  - DVC
   - Model Ensembling
   - R
 ---

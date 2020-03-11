@@ -20,7 +20,6 @@ tags:
   - Machine Learning
   - Best Practices
   - PyTorch
-  - DVC
   - PTDC-18
 ---
 

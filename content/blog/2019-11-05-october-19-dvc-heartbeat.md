@@ -18,7 +18,6 @@ tags:
   - Meetup
   - Heartbeat
   - Hacktoberfest
-  - DVC
 ---
 
 ## News and links

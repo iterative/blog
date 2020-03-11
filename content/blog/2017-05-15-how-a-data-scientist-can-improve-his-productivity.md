@@ -13,7 +13,6 @@ picture: ../../static/uploads/images/2017-05-15/post-image.jpg
 author: ../authors/dmitry_petrov.md
 commentsUrl: https://discuss.dvc.org/t/how-a-data-scientist-can-improve-their-productivity/301
 tags:
-  - DVC
   - Productivity
   - Python
   - Tutorial

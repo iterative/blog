@@ -14,7 +14,6 @@ author: ../authors/elle_obrien.md
 commentsUrl: https://discuss.dvc.org/t/january-20-community-gems/315
 tags:
   - Discord
-  - DVC
   - Gems
 ---
 

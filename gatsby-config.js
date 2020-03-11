@@ -1,6 +1,7 @@
 const path = require('path');
 require('./config/prismjs/dvc');
 const { imageMaxWidth } = require('./src/constants');
+const redirectsMiddleware = require('./src/server/middleware/redirects');
 
 const title = 'Data Version Control · DVC';
 const keywords =
@@ -158,7 +159,12 @@ const plugins = [
     resolve: 'gatsby-plugin-manifest'
   },
   'gatsby-plugin-react-helmet',
-  'gatsby-plugin-sitemap'
+  {
+    options: {
+      exclude: ['**/page/*']
+    },
+    resolve: 'gatsby-plugin-sitemap'
+  }
 ];
 
 if (process.env.CONTEXT === 'production') {
@@ -172,6 +178,9 @@ if (process.env.CONTEXT === 'production') {
 }
 
 module.exports = {
+  developMiddleware: app => {
+    app.use(redirectsMiddleware);
+  },
   plugins,
   siteMetadata: {
     description,

@@ -21,7 +21,6 @@ tags:
   - Meetup
   - Heartbeat
   - Hacktoberfest
-  - DVC
 ---
 
 The past few months have been so busy and full of great events! We love how

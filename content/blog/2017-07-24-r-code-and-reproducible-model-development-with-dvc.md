@@ -20,7 +20,6 @@ commentsUrl: https://discuss.dvc.org/t/r-code-and-reproducible-model-development
 tags:
   - RStats
   - R
-  - DVC
 ---
 
 [DVC](https://dvc.org) or Data Version Control tool — its idea is to track

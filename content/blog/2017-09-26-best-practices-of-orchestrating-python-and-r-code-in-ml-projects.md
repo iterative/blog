@@ -19,7 +19,6 @@ commentsUrl: https://discuss.dvc.org/t/best-practices-of-orchestrating-python-an
 tags:
   - R
   - Python
-  - DVC
   - Tutorial
   - Best Practices
 ---

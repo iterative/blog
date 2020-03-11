@@ -4,6 +4,8 @@ import React, { useLayoutEffect, useState } from 'react';
 
 import cn from 'classnames';
 
+import Helmet from 'react-helmet';
+
 import { ILocation, useLocation } from '../../context/location';
 
 import { ReactComponent as ArrowSVG } from './arrow.svg';
@@ -54,24 +56,34 @@ export default function Paginator({
     <div className={styles.paginator}>
       {needsSmoothScroll && smoothScrollTag}
       {previousPage && (
-        <Link
-          className={cn(styles.link, styles.linkPrevious)}
-          to={previousPage}
-          state={{ fromPaginator: true }}
-        >
-          <ArrowSVG />
-          <span>Newer posts</span>
-        </Link>
+        <>
+          <Link
+            className={cn(styles.link, styles.linkPrevious)}
+            to={previousPage}
+            state={{ fromPaginator: true }}
+          >
+            <ArrowSVG />
+            <span>Newer posts</span>
+          </Link>
+          <Helmet>
+            <link rel="prev" href={previousPage} />
+          </Helmet>
+        </>
       )}
       {nextPage && (
-        <Link
-          className={cn(styles.link, styles.linkNext)}
-          to={nextPage}
-          state={{ fromPaginator: true }}
-        >
-          <span>Older posts</span>
-          <ArrowSVG />
-        </Link>
+        <>
+          <Link
+            className={cn(styles.link, styles.linkNext)}
+            to={nextPage}
+            state={{ fromPaginator: true }}
+          >
+            <span>Older posts</span>
+            <ArrowSVG />
+          </Link>
+          <Helmet>
+            <link rel="next" href={nextPage} />
+          </Helmet>
+        </>
       )}
     </div>
   );

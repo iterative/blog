@@ -18,7 +18,6 @@ commentsUrl: https://discuss.dvc.org/t/april-19-dvc-heartbeat/292
 tags:
   - Heartbeat
   - Discord Gems
-  - DVC
   - PyCon
 ---
 

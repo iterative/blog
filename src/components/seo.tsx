@@ -1,6 +1,7 @@
 import { graphql, useStaticQuery } from 'gatsby';
 import React from 'react';
 import Helmet from 'react-helmet';
+import { IPageInfo } from './paginator';
 
 type MetaProps = JSX.IntrinsicElements['meta'];
 
@@ -12,6 +13,7 @@ interface ISEOProps {
   image?: string;
   lang: string;
   meta: MetaProps[];
+  pageInfo?: IPageInfo;
 }
 
 function SEO({
@@ -21,8 +23,13 @@ function SEO({
   keywords,
   image,
   lang,
-  meta
+  meta,
+  pageInfo
 }: ISEOProps) {
+  if (pageInfo && pageInfo.currentPage > 1 && title) {
+    title = `${title} page ${pageInfo.currentPage}`;
+  }
+
   const { site } = useStaticQuery(
     graphql`
       query {

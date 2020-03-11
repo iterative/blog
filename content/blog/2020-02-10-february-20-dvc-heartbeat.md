@@ -19,7 +19,6 @@ commentsUrl: https://discuss.dvc.org/t/dvc-heartbeat-feburary-20/318
 tags:
   - Heartbeat
   - Continuous Integration
-  - DVC
 ---
 
 Welcome to the February Heartbeat! This month's featured image is a DVC pipeline

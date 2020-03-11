@@ -27,7 +27,7 @@ const Tags = ({
   return (
     <LocationContext.Provider value={location}>
       <Layout>
-        <SEO title={title} defaultMetaTitle={true} />
+        <SEO title={title} defaultMetaTitle={true} pageInfo={pageInfo} />
         <Feed
           pageInfo={pageInfo}
           feedPostList={posts}

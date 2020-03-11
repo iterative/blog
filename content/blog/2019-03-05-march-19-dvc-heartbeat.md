@@ -17,7 +17,6 @@ commentsUrl: https://discuss.dvc.org/t/march-19-dvc-heartbeat/293
 tags:
   - Heartbeat
   - Discord Gems
-  - DVC
 ---
 
 This is the very first issue of the DVC❤️Heartbeat. Every month we will be

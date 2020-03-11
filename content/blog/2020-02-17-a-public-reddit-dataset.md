@@ -14,7 +14,6 @@ commentsUrl: https://discuss.dvc.org/t/aita-for-making-this-a-public-dataset-of-
 tags:
   - Project
   - Data
-  - DVC
   - Reddit
 ---
 

@@ -22,7 +22,6 @@ tags:
   - PyCon
   - Heartbeat
   - Discord Gems
-  - DVC
 ---
 
 ## News and links

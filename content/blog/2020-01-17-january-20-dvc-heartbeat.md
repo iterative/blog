@@ -15,7 +15,6 @@ commentsUrl: https://discuss.dvc.org/t/january-20-dvc-heartbeat/314
 tags:
   - Heartbeat
   - PyData
-  - DVC
 ---
 
 Welcome to the New Year! Time for a recap of the last few weeks of activity in

@@ -18,7 +18,6 @@ author: ../authors/george_vyshnya.md
 commentsUrl: https://discuss.dvc.org/t/data-version-control-in-analytics-devops-paradigm/297
 tags:
   - DevOps
-  - DVC
 ---
 
 ## Data Science and DevOps Convergence

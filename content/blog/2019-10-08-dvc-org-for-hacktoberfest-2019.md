@@ -13,7 +13,6 @@ author: ../authors/svetlana_grinchenko.md
 commentsUrl: https://discuss.dvc.org/t/dvc-org-for-hacktoberfest-2019/286
 tags:
   - Hacktoberfest
-  - DVC
 ---
 
 [Hacktoberfest](https://hacktoberfest.digitalocean.com/) is a monthly-long

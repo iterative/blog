@@ -20,7 +20,6 @@ tags:
   - Google Season of Docs
   - Python
   - Documentation
-  - DVC
 ---
 
 We strongly believe that well-shaped documentation is key for making the product

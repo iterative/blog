@@ -25,7 +25,7 @@ function BlogIndex({
   return (
     <LocationContext.Provider value={location}>
       <Layout>
-        <SEO title="Blog" defaultMetaTitle={true} />
+        <SEO title="Blog" defaultMetaTitle={true} pageInfo={pageInfo} />
         <Feed
           feedPostList={posts}
           pageInfo={pageInfo}
