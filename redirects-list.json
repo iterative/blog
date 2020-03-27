@@ -1,4 +1,5 @@
 [
-  "^/blog/(.*?)/?$               /$1              301",
-  "^/(.+)/$                      /$1              301"
+  "^/blog/(.*?)/?$               https://dvc.org/blog/$1      301",
+  "^/(.+)/$                      https://dvc.org/blog/$1      301",
+  "^/(.*)$                       https://dvc.org/blog/$1      301"
 ]
